@@ -8,4 +8,6 @@
   
  ## User Story
  
- Quick recipe generater with (2) given ingredients from home kitchen, to call various API's
+ Person comes home and doesn't know what to cook, they can use this App to input 2 ingredients they have in their kitchen to search for recipes from various sites.
+ 
+ ##
