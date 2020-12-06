@@ -1,3 +1,5 @@
+# A work in progress...
+
 # Quarantine-Recipe-Machine
 
 # Team
@@ -14,8 +16,3 @@
 
  - Team to test forking site
 
- - AM
- 
- - LP
-
- - Test
