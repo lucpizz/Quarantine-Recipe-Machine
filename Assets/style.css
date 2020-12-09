@@ -1,0 +1,33 @@
+
+body {
+    font-family: 'Julius Sans One', sans-serif;
+    background: url(food4.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.nav-wrapper {
+   
+    background-color: rgb(44, 61, 77);
+    font-family: 'Julius Sans One', sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 200px;
+    padding-left: 400px;
+
+}
+
+.modal-header{
+    background-color: #3481ab;
+    color: white;
+    font-size: 25px;
+    }
+    
+    .modal-body{
+    background-color: white;
+    }
