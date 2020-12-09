@@ -159,8 +159,42 @@
        $("#recipeList").append(tempDiv);
        }
       }
+
+
+
+      // Grab spoontacular individual recipe
+      $("#recipeList").on("click", function(event){
+         
+         var current_ID = $(this).find("li").attr("id");
+         console.log(current_ID);
+         let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+        
+         let urlCall = `https://api.spoonacular.com/recipes/${current_ID}/information&apiKey=${api_Key}`;
+
+         $.ajax({
+            url: urlCall,
+            method: "GET",
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+               alert('Sorry, but this search generated an error.  Please try again! ' +
+                       '\n Details: Status =' + XMLHttpRequest.status + ', Status Text: ' + XMLHttpRequest.statusText);
+                       housekeeping();
+                       return;
+           },
+           }).then(function(response){
+              JSON.stringify.response;
+              console.log("JSON Spoontacular Payload: " + response);
+              
+           })
+
+         
+
+
+
+         
+         
+       })
        
-    
+  /*  
  // Closing Modals
       $(".modalClose").on("click", function(event){
          event.preventDefault();
@@ -168,6 +202,7 @@
          $('#foodModal').modal('hide');
         
        })
+       */
       
       
 
