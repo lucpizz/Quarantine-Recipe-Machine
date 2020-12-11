@@ -138,7 +138,7 @@
    let foodID = "";
    let foodTitle = "";
    let foodImage;
-   $('#foodModal').modal('show');
+   /*$('#foodModal').modal('show');*/
    $('.foodListItem').remove();
    for(i=0; i < jsonLength; i++){
        foodID = myJSON.results[i].id;
