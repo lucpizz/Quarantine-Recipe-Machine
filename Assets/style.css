@@ -2,6 +2,7 @@
 body {
     font-family: 'Julius Sans One', sans-serif;
     background: url("../Images/food4.jpg");
+
     background-size: cover;
     /* background-repeat: repeat; */
     width: 100%;
@@ -14,6 +15,10 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+
+    background-repeat: repeat;
+    background-size: 100%;
+
 }
 
 .navbar {
@@ -63,6 +68,8 @@ body {
     background-color: white;
     }
 
+
     .brand-logo {
         text-align: center;
     }
+

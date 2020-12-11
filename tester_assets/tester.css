@@ -50,16 +50,12 @@ body {
   color: orange;
 }
 
-.modal-header{
-  background-color: #3481ab;
-  color: white;
-  font-size: 25px;
-  }
-  
-  .modal-body{
-  background-color: white;
-  }
+
 
   .brand-logo {
       text-align: center;
   }
+ul {
+  width: 100%;
+}
+
