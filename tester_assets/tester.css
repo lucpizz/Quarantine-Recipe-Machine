@@ -51,8 +51,11 @@ body {
 }
 
 
+
+  .brand-logo {
+      text-align: center;
+  }
 ul {
   width: 100%;
 }
-
 
