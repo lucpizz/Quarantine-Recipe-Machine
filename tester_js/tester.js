@@ -169,7 +169,7 @@
          console.log(current_ID);
          let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
         
-         let urlCall = `https://api.spoonacular.com/recipes/${current_ID}/information&apiKey=${api_Key}`;
+         let urlCall = `https://api.spoonacular.com/recipes/${current_ID}/information?apiKey=${api_Key}`;
 
          $.ajax({
             url: urlCall,
