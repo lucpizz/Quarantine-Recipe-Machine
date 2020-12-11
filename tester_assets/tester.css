@@ -22,15 +22,9 @@ body {
 
 }
 
-.modal-header{
-  background-color: #3481ab;
-  color: white;
-  font-size: 25px;
-  }
-  
-  .modal-body{
-  background-color: white;
-  }
 
+ul {
+  width: 100%;
+}
 
 
