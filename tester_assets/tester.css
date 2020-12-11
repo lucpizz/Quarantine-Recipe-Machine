@@ -1,30 +1,61 @@
 
 body {
   font-family: 'Julius Sans One', sans-serif;
-  background: url(food4.jpg);
-  background-repeat: no-repeat;
+  background: url("../Images/food4.jpg");
+  background-repeat: repeat;
   background-size: 100%;
 }
 
-.nav-wrapper {
+.fixed-bg {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.navbar {
  
   background-color: rgb(44, 61, 77);
   font-family: 'Julius Sans One', sans-serif;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+
 }
 
-.flex-container {
+.header-text {
+  font-family: 'Julius Sans One', sans-serif;
+  margin: -20px 0 0 0;
+}
+
+.container {
+  background-color: rgb(44, 61, 77);
+  align-items: center;
   display: flex;
   flex-direction: row;
+  position: relative;
+   
+  /* display: flex;
+  flex-direction: row;
   padding-top: 200px;
-  padding-left: 400px;
+  padding-left: 400px; */
 
 }
 
+.flow-text {
+  color: orange;
+}
 
+.save {
+  color: orange;
+}
+
+
+
+  .brand-logo {
+      text-align: center;
+  }
 ul {
   width: 100%;
 }
-
 
