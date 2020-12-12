@@ -82,3 +82,18 @@ body {
         }
         }
 
+        .img-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+          }
+          
+          .img-container img {
+            width: 100%;
+            object-fit: cover;
+          }
