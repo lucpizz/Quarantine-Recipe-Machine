@@ -151,21 +151,29 @@ function displayResults(myJSON, jsonLength) {
     foodProtein = myJSON.results[i].protein;
     foodImage = myJSON.results[i].image;
 
-    tempDiv = document.createElement("li");
+    var tempDiv = document.createElement("li");
     $(tempDiv).attr("id", foodID);
     $(tempDiv).addClass("foodListItem");
-    
-    secondaryDiv = document.createElement("div");
+
+    var secondaryDiv = document.createElement("div");
     $(secondaryDiv).addClass("img-container");
-    tempIMG = document.createElement("img");
+    var tempIMG = document.createElement("img");
     $(tempIMG).attr("src", foodImage);
-    $(secondaryDiv).append.(tempIMG);
+    $(secondaryDiv).append(tempIMG);
+    
+    var foodDescription = document.createElement("p");
+    $(foodDescription).text(`Title: ${foodTitle}`);
+    $(secondaryDiv).append(foodDescription);
+    
+    $(".list-container").append(tempDiv);
+    
+
     /* $(tempIMG).css({ height: "10%", width: "auto" }); */
     
     
-    $(tempDiv).text(`Title: ${foodTitle}`);
-    $(tempDiv).append(tempIMG);
-    $("#recipeList").append(tempDiv);
+    
+   
+    
   }
 }
 
