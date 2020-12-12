@@ -160,12 +160,14 @@ function displayResults(myJSON, jsonLength) {
     var tempIMG = document.createElement("img");
     $(tempIMG).attr("src", foodImage);
     $(secondaryDiv).append(tempIMG);
+
+    $(tempDiv).append(secondaryDiv);
     
     var foodDescription = document.createElement("p");
     $(foodDescription).text(`Title: ${foodTitle}`);
-    $(secondaryDiv).append(foodDescription);
+    $(tempDiv).append(foodDescription);
     
-    $(".list-container").append(tempDiv);
+    $("#recipeList").append(tempDiv);
     
 
     /* $(tempIMG).css({ height: "10%", width: "auto" }); */
