@@ -141,7 +141,7 @@ function displayResults(myJSON, jsonLength) {
   let foodID = "";
   let foodTitle = "";
   let foodImage;
-  /*$('#foodModal').modal('show');*/
+  /*$(‘#foodModal’).modal(‘show’);*/
   $(".foodListItem").remove();
   for (i = 0; i < jsonLength; i++) {
     foodID = myJSON.results[i].id;
@@ -150,27 +150,28 @@ function displayResults(myJSON, jsonLength) {
     foodCarbs = myJSON.results[i].carbs;
     foodProtein = myJSON.results[i].protein;
     foodImage = myJSON.results[i].image;
-
-    tempDiv = document.createElement("li");
-    tempIMG = document.createElement("img");
-    $(tempIMG).attr("src", foodImage);
-    $(tempIMG).css({ height: "10%", width: "auto" });
+    var tempDiv = document.createElement("li");
     $(tempDiv).attr("id", foodID);
     $(tempDiv).addClass("foodListItem");
-    $(tempDiv).text(`Title: ${foodTitle}`);
-    $(tempDiv).append(tempIMG);
+    var secondaryDiv = document.createElement("div");
+    var foodDescription = document.createElement("p");
+    $(foodDescription).text(`Title: ${foodTitle}`);
+    $(tempDiv).append(foodDescription);
+    $(secondaryDiv).addClass("img-container");
+    var tempIMG = document.createElement("img");
+    $(tempIMG).attr("src", foodImage);
+    $(secondaryDiv).append(tempIMG);
+    $(tempDiv).append(secondaryDiv);
     $("#recipeList").append(tempDiv);
+    /* $(tempIMG).css({ height: "10%", width: "auto" }); */
   }
 }
-
 // Grab spoontacular individual recipe
 $("#recipeList").on("click", function (event) {
   var current_ID = $(this).find("li").attr("id");
   console.log(current_ID);
   let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
-
   let urlCall = `https://api.spoonacular.com/recipes/${current_ID}/information?apiKey=${api_Key}`;
-
   $.ajax({
     url: urlCall,
     method: "GET",
@@ -190,13 +191,11 @@ $("#recipeList").on("click", function (event) {
     console.log("JSON Spoontacular Payload: " + response);
   });
 });
+white_check_mark
+eyes
+raised_hands
 
-/*  
- // Closing Modals
-      $(".modalClose").on("click", function(event){
-         event.preventDefault();
-         $('.foodListItem').remove();
-         $('#foodModal').modal('hide');
-        
-       })
-       */
+
+
+
+
