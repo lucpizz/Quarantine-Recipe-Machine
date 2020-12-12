@@ -152,11 +152,17 @@ function displayResults(myJSON, jsonLength) {
     foodImage = myJSON.results[i].image;
 
     tempDiv = document.createElement("li");
-    tempIMG = document.createElement("img");
-    $(tempIMG).attr("src", foodImage);
-    $(tempIMG).css({ height: "10%", width: "auto" });
     $(tempDiv).attr("id", foodID);
     $(tempDiv).addClass("foodListItem");
+    
+    secondaryDiv = document.createElement("div");
+    $(secondaryDiv).addClass("img-container");
+    tempIMG = document.createElement("img");
+    $(tempIMG).attr("src", foodImage);
+    $(secondaryDiv).append.(tempIMG);
+    /* $(tempIMG).css({ height: "10%", width: "auto" }); */
+    
+    
     $(tempDiv).text(`Title: ${foodTitle}`);
     $(tempDiv).append(tempIMG);
     $("#recipeList").append(tempDiv);
