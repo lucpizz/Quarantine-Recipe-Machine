@@ -155,7 +155,10 @@ function displayResults(myJSON, jsonLength) {
     $(tempDiv).attr("id", foodID);
     $(tempDiv).addClass("foodListItem");
 
-    var secondaryDiv = document.createElement("div");
+    var secondaryDiv = document.createElement("div"); 
+    var foodDescription = document.createElement("p");
+    $(foodDescription).text(`Title: ${foodTitle}`);
+    $(tempDiv).append(foodDescription);
     $(secondaryDiv).addClass("img-container");
     var tempIMG = document.createElement("img");
     $(tempIMG).attr("src", foodImage);
@@ -163,9 +166,7 @@ function displayResults(myJSON, jsonLength) {
 
     $(tempDiv).append(secondaryDiv);
     
-    var foodDescription = document.createElement("p");
-    $(foodDescription).text(`Title: ${foodTitle}`);
-    $(tempDiv).append(foodDescription);
+   
     
     $("#recipeList").append(tempDiv);
     
