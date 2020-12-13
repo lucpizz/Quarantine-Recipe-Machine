@@ -187,13 +187,111 @@ $("#recipeList").on("click", function (event) {
       return;
     },
   }).then(function (response) {
+    console.log("JSON Spoontacular Payload/before Stringify: " + response);
     JSON.stringify.response;
-    console.log("JSON Spoontacular Payload: " + response);
+    console.log("JSON Spoontacular Payload/post Stringify: " + response);
+    getRecipe_Steps(response);
   });
 });
-white_check_mark
-eyes
-raised_hands
+
+// --------- CODE FOR INDIVIDUAL RECIPES BELOW HERE ---------------//
+
+
+/*
+//--------------------------
+getRecipe_Steps()
+PURPOSE:
+
+//-------------------------
+*/
+function getRecipe_Steps(passedArray){
+var myArray = passedArray.analyzedInstructions[0].steps;
+console.log(`Listed Steps: ${myArray}`);
+
+var stepsContainer = document.createElement("div");
+$(stepsContainer).addClass("steps-container");
+
+// BEGIN EACH LOOP
+$.each( myArray, function( index) {
+  // --- Create paragraph element and span.
+  var current_paragraph = document.createElement("p");
+  $(current_paragraph).addClass("steps-line");
+  var number_span = document.createElement("span")
+  $(number_span).addClass("step-number");
+  
+  // ---- Grab current number and step.
+  // #
+  var pre_step = index + 1;
+  var step_number = pre_step + ") ";
+  // txt
+  var step_text = myArray[index].step + "  ";
+  // --- Attach step number to paragraph
+  $(number_span).append(step_number);
+  $(current_paragraph).append(number_span);
+
+  $(current_paragraph).append(step_text);
+  $(stepsContainer).append(current_paragraph);
+
+ }); 
+// END EACH LOOP
+console.log(`Final paragraph ${stepsContainer}`);
+  
+
+ let ingredientsContainer = getRecipe_Ingredients(passedArray);
+ console.log(`Ingredients: ${ingredientsContainer}`);
+
+ alert( $(ingredientsContainer).text() + "      " +  $(stepsContainer).text());
+
+} 
+
+/*
+//---------------------
+getRecipe_Ingredients()
+
+PURPOSE:
+//---------------------
+*/
+function getRecipe_Ingredients(passedArray){
+var myArray = passedArray.extendedIngredients;
+
+var ingredientContainer = document.createElement("div");
+$(ingredientContainer).addClass("ingredients-container");
+
+  $.each(myArray, function( index) {
+    var current_paragraph = document.createElement("p");
+    $(current_paragraph).addClass("ingredients-line");
+    var number_span = document.createElement("span")
+    $(number_span).addClass("ingredient-number");
+
+    // ##
+
+     // ---- Grab current number and step.
+  // #
+  var pre_step = index + 1;
+  var step_number = pre_step + ") ";
+  // txt
+  var step_text = myArray[index].originalString + "  ";
+  // --- Attach step number to paragraph
+  $(number_span).append(step_number);
+  $(current_paragraph).append(number_span);
+
+  $(current_paragraph).append(step_text);
+  $(ingredientContainer).append(current_paragraph);
+
+  })
+    
+return ingredientContainer;
+  
+
+}
+
+  
+
+  
+
+
+
+
 
 
 
