@@ -169,6 +169,17 @@ function displayResults(myJSON, jsonLength) {
 }
 // Grab spoontacular individual recipe
 $("#recipeList").on("click", function (event) {
+  /*
+  var elems = document.querySelectorAll(".modal");
+  var instances = M.Modal.init(elems);
+
+  var singleModalElem = document.querySelector("#modal1");
+  var instance = M.Modal.getInstance(singleModalElem);
+  */
+  $(".modal").modal();
+  $(".modal").show();
+
+  
   var current_ID = $(this).find("li").attr("id");
   console.log(current_ID);
   // let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
