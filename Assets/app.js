@@ -86,8 +86,8 @@ function createIngredientParameters(
 // ---------------------------------------
 
 function spoonApiCall() {
-  // let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
-  let api_Key = "6d04fc1a81834943aa3e91c05f2755b8";
+   let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+  // let api_Key = "6d04fc1a81834943aa3e91c05f2755b8";
   let endpoint = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_Key}&includeIngredients=${ingredients}`;
 
   $.ajax({
@@ -169,6 +169,11 @@ function displayResults(myJSON, jsonLength) {
 }
 // Grab spoontacular individual recipe
 $("#recipeList").on("click", function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  var targetItem = event.target;
+  var listItem = $(targetItem).closest("li");
+
   /*
   var elems = document.querySelectorAll(".modal");
   var instances = M.Modal.init(elems);
@@ -176,13 +181,19 @@ $("#recipeList").on("click", function (event) {
   var singleModalElem = document.querySelector("#modal1");
   var instance = M.Modal.getInstance(singleModalElem);
   */
- $('#modal1').modal().modal('open');
+ var current_ID = $(listItem).attr("id");
+  $('#modal1').modal().modal('open');
+
+  if($('.modal-content') != undefined && $('.modal-content') != null && $('.modal-content') != ""){
+  $('.modal-content').empty();
+ 
+}
 
   
-  var current_ID = $(this).find("li").attr("id");
+  
   console.log(current_ID);
-  // let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
-  let api_Key = "6d04fc1a81834943aa3e91c05f2755b8"
+  let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+  // let api_Key = "6d04fc1a81834943aa3e91c05f2755b8"
   let urlCall = `https://api.spoonacular.com/recipes/${current_ID}/information?apiKey=${api_Key}`;
   $.ajax({
     url: urlCall,
@@ -242,21 +253,24 @@ $.each( myArray, function( index) {
   $(current_paragraph).append(number_span);
 
   $(current_paragraph).append(`${step_text}<br>`);
-  $(stepsContainer).append(current_paragraph);
-
+  
+   $(stepsContainer).append(current_paragraph);
  }); 
+ 
 // END EACH LOOP
 //console.log(`Final paragraph ${stepsContainer}`);
   
-
- let ingredientsContainer = getRecipe_Ingredients(passedArray);
+ let ingredientsContainer = "";
+ ingredientsContainer = getRecipe_Ingredients(passedArray);
 
  //console.log(`Ingredients: ${ingredientsContainer}`);
 
  //alert( $(ingredientsContainer).text() + "      " +  $(stepsContainer).text());
- var listedIngredients = $(ingredientsContainer).text();
- var listedSteps = $(stepsContainer).text();
- $(".modal-content").append(`<h4 id="recipeName">Ingredients</h4>${listedIngredients}`);
+ var listedIngredients = "";
+ listedIngredients = $(ingredientsContainer).text();
+ var listedSteps = "";
+ listedSteps = $(stepsContainer).text();
+ $(".modal-content").append(`<h4 id="recipeIngredients">Ingredients</h4>${listedIngredients}`);
  $(".modal-content").append(`<h4 id="recipeSteps">Steps</h4>${listedSteps}`);
 
 } 
