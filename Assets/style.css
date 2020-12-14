@@ -1,20 +1,15 @@
-
 body {
-    font-family: 'Julius Sans One', sans-serif;
-    background: url("../Images/food4.jpg");
-    background-size: cover;
-    background-attachment: local, scroll;
-   
+  font-family: "Julius Sans One", sans-serif;
+  background: url("../Images/food4.jpg");
+  background-size: cover;
+  background-attachment: local, scroll;
 }
 
-
 .nav-wrapper {
-    background-color:rgb(44, 61, 77) !important;
-    font-size: 14px;
-    font-weight: bold;
-
-  }
-
+  background-color: rgb(44, 61, 77) !important;
+  font-size: 14px;
+  font-weight: bold;
+}
 
 /* .navbar {
    
@@ -27,37 +22,37 @@ body {
 } */
 
 .header-text {
-    font-family: 'Julius Sans One', sans-serif;
-    margin: -20px 0 0 0;
+  font-family: "Julius Sans One", sans-serif;
+  margin: -20px 0 0 0;
 }
 
 .container {
-    background-color: rgb(44, 61, 77);
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    position: center;
-    top: 50px;
-    left: 0;
-    /* height: 100%; */
-    width: 85%;
+  background-color: rgb(44, 61, 77);
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  position: center;
+  top: 50px;
+  left: 0;
+  /* height: 100%; */
+  width: 85%;
 }
 
 .container .row {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .card-title {
-    align-items: center;
-    color: orange;
+  align-items: center;
+  color: orange;
 }
-    
 
 .flow-text {
-    color: orange;
+  color: orange;
 }
 
 .save {
+
     color: orange;
 }
 
@@ -129,9 +124,13 @@ body {
             }
             }    
      /*
+
+
+
             @media only screen and (max-width: 400px) {
                 .food-img #food4;
                 
             }
+
             */
-        
+
