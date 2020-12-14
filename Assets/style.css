@@ -4,8 +4,9 @@ body {
     background: url("../Images/food4.jpg");
     background-size: cover;
     background-attachment: local, scroll;
-    
+   
 }
+
 
 .nav-wrapper {
     background-color:rgb(44, 61, 77) !important;
@@ -38,8 +39,8 @@ body {
     position: center;
     top: 50px;
     left: 0;
-    height: 100%;
-    width: 50%;
+    /* height: 100%; */
+    width: 85%;
 }
 
 .container .row {
@@ -94,7 +95,7 @@ body {
             display: flex;
             flex-direction: column-reverse;
             width: 200px;
-            background: lightblue;
+            background: #546e7a;
             margin: 1rem auto 0;
             padding: 0;
           }      
@@ -127,3 +128,10 @@ body {
                 display: block;
             }
             }    
+     /*
+            @media only screen and (max-width: 400px) {
+                .food-img #food4;
+                
+            }
+            */
+        
