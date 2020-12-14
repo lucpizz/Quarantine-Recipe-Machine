@@ -176,8 +176,7 @@ $("#recipeList").on("click", function (event) {
   var singleModalElem = document.querySelector("#modal1");
   var instance = M.Modal.getInstance(singleModalElem);
   */
-  $(".modal").modal();
-  $(".modal").show();
+ $('#modal1').modal().modal('open');
 
   
   var current_ID = $(this).find("li").attr("id");
@@ -221,13 +220,13 @@ function getRecipe_Steps(passedArray){
 var myArray = passedArray.analyzedInstructions[0].steps;
 console.log(`Listed Steps: ${myArray}`);
 
-var stepsContainer = document.createElement("div");
+var stepsContainer = document.createElement("ul");
 $(stepsContainer).addClass("steps-container");
 
 // BEGIN EACH LOOP
 $.each( myArray, function( index) {
   // --- Create paragraph element and span.
-  var current_paragraph = document.createElement("p");
+  var current_paragraph = document.createElement("li");
   $(current_paragraph).addClass("steps-line");
   var number_span = document.createElement("span")
   $(number_span).addClass("step-number");
@@ -242,18 +241,23 @@ $.each( myArray, function( index) {
   $(number_span).append(step_number);
   $(current_paragraph).append(number_span);
 
-  $(current_paragraph).append(step_text);
+  $(current_paragraph).append(`${step_text}<br>`);
   $(stepsContainer).append(current_paragraph);
 
  }); 
 // END EACH LOOP
-console.log(`Final paragraph ${stepsContainer}`);
+//console.log(`Final paragraph ${stepsContainer}`);
   
 
  let ingredientsContainer = getRecipe_Ingredients(passedArray);
- console.log(`Ingredients: ${ingredientsContainer}`);
 
- alert( $(ingredientsContainer).text() + "      " +  $(stepsContainer).text());
+ //console.log(`Ingredients: ${ingredientsContainer}`);
+
+ //alert( $(ingredientsContainer).text() + "      " +  $(stepsContainer).text());
+ var listedIngredients = $(ingredientsContainer).text();
+ var listedSteps = $(stepsContainer).text();
+ $(".modal-content").append(`<h4 id="recipeName">Ingredients</h4>${listedIngredients}`);
+ $(".modal-content").append(`<h4 id="recipeSteps">Steps</h4>${listedSteps}`);
 
 } 
 
@@ -267,11 +271,11 @@ PURPOSE:
 function getRecipe_Ingredients(passedArray){
 var myArray = passedArray.extendedIngredients;
 
-var ingredientContainer = document.createElement("div");
+var ingredientContainer = document.createElement("ul");
 $(ingredientContainer).addClass("ingredients-container");
 
   $.each(myArray, function( index) {
-    var current_paragraph = document.createElement("p");
+    var current_paragraph = document.createElement("li");
     $(current_paragraph).addClass("ingredients-line");
     var number_span = document.createElement("span")
     $(number_span).addClass("ingredient-number");
@@ -288,7 +292,7 @@ $(ingredientContainer).addClass("ingredients-container");
   $(number_span).append(step_number);
   $(current_paragraph).append(number_span);
 
-  $(current_paragraph).append(step_text);
+  $(current_paragraph).append(`${step_text}<br>`);
   $(ingredientContainer).append(current_paragraph);
 
   })
