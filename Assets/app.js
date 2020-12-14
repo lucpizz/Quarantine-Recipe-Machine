@@ -86,7 +86,8 @@ function createIngredientParameters(
 // ---------------------------------------
 
 function spoonApiCall() {
-  let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+  // let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+  let api_Key = "6d04fc1a81834943aa3e91c05f2755b8";
   let endpoint = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_Key}&includeIngredients=${ingredients}`;
 
   $.ajax({
@@ -170,7 +171,8 @@ function displayResults(myJSON, jsonLength) {
 $("#recipeList").on("click", function (event) {
   var current_ID = $(this).find("li").attr("id");
   console.log(current_ID);
-  let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+  // let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+  let api_Key = "6d04fc1a81834943aa3e91c05f2755b8"
   let urlCall = `https://api.spoonacular.com/recipes/${current_ID}/information?apiKey=${api_Key}`;
   $.ajax({
     url: urlCall,
