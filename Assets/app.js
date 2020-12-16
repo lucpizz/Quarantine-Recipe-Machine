@@ -212,7 +212,7 @@ $("#recipeList").on("click", function (event) {
     },
   }).then(function (response) {
     console.log("JSON Spoontacular Payload/before Stringify: " + response);
-    JSON.stringify.response;
+    JSON.stringify(response);
     console.log("JSON Spoontacular Payload/post Stringify: " + response);
     getRecipe_Steps(response);
   });
@@ -257,6 +257,12 @@ function getRecipe_Steps(passedArray) {
     $(stepsContainer).append(current_paragraph);
   });
 
+  let recipe_steps = myArray.map((step) => step.step);
+
+  let recipe_ingredients = myArray.map(
+    (extendedIngredients) => extendedIngredients.extendedIngredients
+  );
+
   // END EACH LOOP
   //console.log(`Final paragraph ${stepsContainer}`);
 
@@ -271,9 +277,20 @@ function getRecipe_Steps(passedArray) {
   var listedSteps = "";
   listedSteps = $(stepsContainer).text();
   $(".modal-content").append(
-    `<h4 id="recipeIngredients">Ingredients</h4>${listedIngredients}`
+    `<h4 id="recipeIngredients">Ingredients:</h4>${listedIngredients}<br>`
   );
-  $(".modal-content").append(`<h4 id="recipeSteps">Steps</h4>${listedSteps}`);
+
+  $(".modal-content").append("<br>");
+
+  var newHfour = $("<h4 id='recipeSteps'>").text("Steps:");
+
+  $(".modal-content").append(newHfour);
+
+  for (var i = 0; i < recipe_steps.length; i++) {
+    var newParag = $("<p>");
+    newParag.html(`step ${i + 1}: ${recipe_steps[i]}`);
+    $(".modal-content").append(newParag);
+  }
 }
 
 /*
