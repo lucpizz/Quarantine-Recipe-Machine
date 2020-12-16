@@ -229,6 +229,16 @@ PURPOSE:
 */
 function getRecipe_Steps(passedArray){
 var myArray = passedArray.analyzedInstructions[0].steps;
+
+if( passedArray.winePairing.length === undefined || passedArray.winePairing.length === null || passedArray.winePairing.length === 0 ){
+ var wineInfo = "";
+}
+else{
+  
+  var wineInfo = passedArray.winePairing.productMatches[0].title;
+}
+
+
 console.log(`Listed Steps: ${myArray}`);
 
 var stepsContainer = document.createElement("ul");
@@ -273,6 +283,11 @@ $.each( myArray, function( index) {
  $(".modal-content").append(`<h4 id="recipeIngredients">Ingredients</h4>${listedIngredients}`);
  $(".modal-content").append(`<h4 id="recipeSteps">Steps</h4>${listedSteps}`);
 
+ if(wineInfo != undefined && wineInfo != null && wineInfo != ""){
+  $(".modal-content").append(`<h4 id="wineHeader">Wine</h4><div class="wineClass">${wineInfo}</div>`);
+ }
+
+
 } 
 
 /*
@@ -312,7 +327,5 @@ $(ingredientContainer).addClass("ingredients-container");
   })
     
 return ingredientContainer;
-  
-
-}
+ } 
 
