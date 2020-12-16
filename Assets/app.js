@@ -86,7 +86,7 @@ function createIngredientParameters(
 // ---------------------------------------
 
 function spoonApiCall() {
-   let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+  let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
   // let api_Key = "6d04fc1a81834943aa3e91c05f2755b8";
   let endpoint = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_Key}&includeIngredients=${ingredients}`;
 
@@ -181,16 +181,17 @@ $("#recipeList").on("click", function (event) {
   var singleModalElem = document.querySelector("#modal1");
   var instance = M.Modal.getInstance(singleModalElem);
   */
- var current_ID = $(listItem).attr("id");
-  $('#modal1').modal().modal('open');
+  var current_ID = $(listItem).attr("id");
+  $("#modal1").modal().modal("open");
 
-  if($('.modal-content') != undefined && $('.modal-content') != null && $('.modal-content') != ""){
-  $('.modal-content').empty();
- 
-}
+  if (
+    $(".modal-content") != undefined &&
+    $(".modal-content") != null &&
+    $(".modal-content") != ""
+  ) {
+    $(".modal-content").empty();
+  }
 
-  
-  
   console.log(current_ID);
   let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
   // let api_Key = "6d04fc1a81834943aa3e91c05f2755b8"
@@ -211,14 +212,13 @@ $("#recipeList").on("click", function (event) {
     },
   }).then(function (response) {
     console.log("JSON Spoontacular Payload/before Stringify: " + response);
-    JSON.stringify.response;
+    JSON.stringify(response);
     console.log("JSON Spoontacular Payload/post Stringify: " + response);
     getRecipe_Steps(response);
   });
 });
 
 // --------- CODE FOR INDIVIDUAL RECIPES BELOW HERE ---------------//
-
 
 /*
 //--------------------------
@@ -227,68 +227,71 @@ PURPOSE:
 
 //-------------------------
 */
-function getRecipe_Steps(passedArray){
-var myArray = passedArray.analyzedInstructions[0].steps;
+function getRecipe_Steps(passedArray) {
+  var myArray = passedArray.analyzedInstructions[0].steps;
+  console.log(`Listed Steps: ${myArray}`);
 
-if( passedArray.winePairing.length === undefined || passedArray.winePairing.length === null || passedArray.winePairing.length === 0 ){
- var wineInfo = "";
+  var stepsContainer = document.createElement("ul");
+  $(stepsContainer).addClass("steps-container");
+
+  // BEGIN EACH LOOP
+  $.each(myArray, function (index) {
+    // --- Create paragraph element and span.
+    var current_paragraph = document.createElement("li");
+    $(current_paragraph).addClass("steps-line");
+    var number_span = document.createElement("span");
+    $(number_span).addClass("step-number");
+
+    // ---- Grab current number and step.
+    // #
+    var pre_step = index + 1;
+    var step_number = pre_step + ") ";
+    // txt
+    var step_text = myArray[index].step + "  ";
+    // --- Attach step number to paragraph
+    $(number_span).append(step_number);
+    $(current_paragraph).append(number_span);
+
+    $(current_paragraph).append(`${step_text}<br>`);
+
+    $(stepsContainer).append(current_paragraph);
+  });
+
+  let recipe_steps = myArray.map((step) => step.step);
+
+  let recipe_ingredients = myArray.map(
+    (extendedIngredients) => extendedIngredients.extendedIngredients
+  );
+
+  // END EACH LOOP
+  //console.log(`Final paragraph ${stepsContainer}`);
+
+  let ingredientsContainer = "";
+  ingredientsContainer = getRecipe_Ingredients(passedArray);
+
+  //console.log(`Ingredients: ${ingredientsContainer}`);
+
+  //alert( $(ingredientsContainer).text() + "      " +  $(stepsContainer).text());
+  var listedIngredients = "";
+  listedIngredients = $(ingredientsContainer).text();
+  var listedSteps = "";
+  listedSteps = $(stepsContainer).text();
+  $(".modal-content").append(
+    `<h4 id="recipeIngredients">Ingredients:</h4>${listedIngredients}<br>`
+  );
+
+  $(".modal-content").append("<br>");
+
+  var newHfour = $("<h4 id='recipeSteps'>").text("Steps:");
+
+  $(".modal-content").append(newHfour);
+
+  for (var i = 0; i < recipe_steps.length; i++) {
+    var newParag = $("<p>");
+    newParag.html(`step ${i + 1}: ${recipe_steps[i]}`);
+    $(".modal-content").append(newParag);
+  }
 }
-else{
-  
-  var wineInfo = passedArray.winePairing.productMatches[0].title;
-}
-
-
-console.log(`Listed Steps: ${myArray}`);
-
-var stepsContainer = document.createElement("ul");
-$(stepsContainer).addClass("steps-container");
-
-// BEGIN EACH LOOP
-$.each( myArray, function( index) {
-  // --- Create paragraph element and span.
-  var current_paragraph = document.createElement("li");
-  $(current_paragraph).addClass("steps-line");
-  var number_span = document.createElement("span")
-  $(number_span).addClass("step-number");
-  
-  // ---- Grab current number and step.
-  // #
-  var pre_step = index + 1;
-  var step_number = pre_step + ") ";
-  // txt
-  var step_text = myArray[index].step + "  ";
-  // --- Attach step number to paragraph
-  $(number_span).append(step_number);
-  $(current_paragraph).append(number_span);
-
-  $(current_paragraph).append(`${step_text}<br>`);
-  
-   $(stepsContainer).append(current_paragraph);
- }); 
- 
-// END EACH LOOP
-//console.log(`Final paragraph ${stepsContainer}`);
-  
- let ingredientsContainer = "";
- ingredientsContainer = getRecipe_Ingredients(passedArray);
-
- //console.log(`Ingredients: ${ingredientsContainer}`);
-
- //alert( $(ingredientsContainer).text() + "      " +  $(stepsContainer).text());
- var listedIngredients = "";
- listedIngredients = $(ingredientsContainer).text();
- var listedSteps = "";
- listedSteps = $(stepsContainer).text();
- $(".modal-content").append(`<h4 id="recipeIngredients">Ingredients</h4>${listedIngredients}`);
- $(".modal-content").append(`<h4 id="recipeSteps">Steps</h4>${listedSteps}`);
-
- if(wineInfo != undefined && wineInfo != null && wineInfo != ""){
-  $(".modal-content").append(`<h4 id="wineHeader">Wine</h4><div class="wineClass">${wineInfo}</div>`);
- }
-
-
-} 
 
 /*
 //---------------------
@@ -297,35 +300,33 @@ getRecipe_Ingredients()
 PURPOSE:
 //---------------------
 */
-function getRecipe_Ingredients(passedArray){
-var myArray = passedArray.extendedIngredients;
+function getRecipe_Ingredients(passedArray) {
+  var myArray = passedArray.extendedIngredients;
 
-var ingredientContainer = document.createElement("ul");
-$(ingredientContainer).addClass("ingredients-container");
+  var ingredientContainer = document.createElement("ul");
+  $(ingredientContainer).addClass("ingredients-container");
 
-  $.each(myArray, function( index) {
+  $.each(myArray, function (index) {
     var current_paragraph = document.createElement("li");
     $(current_paragraph).addClass("ingredients-line");
-    var number_span = document.createElement("span")
+    var number_span = document.createElement("span");
     $(number_span).addClass("ingredient-number");
 
     // ##
 
-     // ---- Grab current number and step.
-  // #
-  var pre_step = index + 1;
-  var step_number = pre_step + ") ";
-  // txt
-  var step_text = myArray[index].originalString + "  ";
-  // --- Attach step number to paragraph
-  $(number_span).append(step_number);
-  $(current_paragraph).append(number_span);
+    // ---- Grab current number and step.
+    // #
+    var pre_step = index + 1;
+    var step_number = pre_step + ") ";
+    // txt
+    var step_text = myArray[index].originalString + "  ";
+    // --- Attach step number to paragraph
+    $(number_span).append(step_number);
+    $(current_paragraph).append(number_span);
 
-  $(current_paragraph).append(`${step_text}<br>`);
-  $(ingredientContainer).append(current_paragraph);
+    $(current_paragraph).append(`${step_text}<br>`);
+    $(ingredientContainer).append(current_paragraph);
+  });
 
-  })
-    
-return ingredientContainer;
- } 
-
+  return ingredientContainer;
+}
