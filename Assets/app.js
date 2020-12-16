@@ -93,8 +93,8 @@ function createIngredientParameters(
 // ---------------------------------------
 
 function spoonApiCall() {
-  let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
-  // let api_Key = "6d04fc1a81834943aa3e91c05f2755b8";
+  //let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+  let api_Key = "6d04fc1a81834943aa3e91c05f2755b8";
   let endpoint = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_Key}&includeIngredients=${ingredients}`;
 
   $.ajax({
@@ -200,8 +200,8 @@ $("#recipeList").on("click", function (event) {
   }
 
   console.log(current_ID);
-  let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
-  // let api_Key = "6d04fc1a81834943aa3e91c05f2755b8"
+  //let api_Key = "1800b42b74cd42b688e40f416d0c69d9";
+  let api_Key = "6d04fc1a81834943aa3e91c05f2755b8";
   let urlCall = `https://api.spoonacular.com/recipes/${current_ID}/information?apiKey=${api_Key}`;
   $.ajax({
     url: urlCall,
@@ -238,6 +238,20 @@ function getRecipe_Steps(passedArray) {
   var myArray = passedArray.analyzedInstructions[0].steps;
   console.log(`Listed Steps: ${myArray}`);
 
+  var ingArray = passedArray.extendedIngredients;
+
+  var newListIngredient = [];
+
+  for (var i = 0; i < ingArray.length; i++) {
+    newListIngredient.push(passedArray.extendedIngredients[i].name);
+    console.log(
+      "newIng",
+      JSON.stringify(passedArray.extendedIngredients[i].name)
+    );
+  }
+
+  //console.log(`Listed Ingredients: ${ingArray}`);
+
   var stepsContainer = document.createElement("ul");
   $(stepsContainer).addClass("steps-container");
 
@@ -266,9 +280,11 @@ function getRecipe_Steps(passedArray) {
 
   let recipe_steps = myArray.map((step) => step.step);
 
-  let recipe_ingredients = myArray.map(
-    (extendedIngredients) => extendedIngredients.extendedIngredients
+  let recipe_ingredients = newListIngredient.map(
+    (newListIngredient) => newListIngredient
   );
+
+  console.log("new ingredients", recipe_ingredients);
 
   // END EACH LOOP
   //console.log(`Final paragraph ${stepsContainer}`);
@@ -283,15 +299,67 @@ function getRecipe_Steps(passedArray) {
   listedIngredients = $(ingredientsContainer).text();
   var listedSteps = "";
   listedSteps = $(stepsContainer).text();
+
+  var newHfourIngredients = $("<h4 id='recipeIngredients'>").text(
+    "Ingredients:"
+  );
+
+  $(".modal-content").append(newHfourIngredients);
+
+  for (var i = 0; i < newListIngredient.length; i++) {
+    var newP = $("<p>");
+    newP.html(`ingredient ${i + 1}: ${recipe_ingredients[i]}`);
+    $(".modal-content").append(newP);
+  }
+
+  //$(".modal-content").append(newListIngredient);
+
+  //for (var i = 0; i < extendedIngredients.length; i++)
+  /*
+  for (var i = 0; i < recipe_ingredients.length; i++) {
+    let ingredientArray = [];
+
+    for (var j = 0; j < recipe_ingredients[i].length; j++) {
+      if (!ingredientArray.includes(recipe_ingredients[i][j].name)) {
+        ingredientArray.push(recipe_ingredients[i][j].name);
+      }
+
+      console.log(`i = ${i} j= ${j}`);
+      console.log("test", recipe_ingredients[i][j].name);
+    }
+
+    console.log("testing", ingredientArray);
+
+    var newIngredientArray = [];
+
+    $.each(ingredientArray, function (i, el) {
+      if ($.inArray(el, newIngredientArray) === -1) newIngredientArray.push(el);
+
+      console.log(newIngredientArray);
+    });
+    return newIngredientArray;
+    //console.log(newIngredientArray);
+  }
+*/
+  /*
+  for (var i = 0; i < ingredientArray.length; i++) {
+    var newParagIng = $("<p>");
+    newParagIng.html(`ingredient ${i + 1}: ${recipe_ingredients[i]}`);
+    $(".modal-content").append(newParagIng);
+  }
+*/
+
+  /*
   $(".modal-content").append(
     `<h4 id="recipeIngredients">Ingredients:</h4>${listedIngredients}<br>`
   );
+*/
 
   $(".modal-content").append("<br>");
 
-  var newHfour = $("<h4 id='recipeSteps'>").text("Steps:");
+  var newHfourRecipe = $("<h4 id='recipeSteps'>").text("Steps:");
 
-  $(".modal-content").append(newHfour);
+  $(".modal-content").append(newHfourRecipe);
 
   for (var i = 0; i < recipe_steps.length; i++) {
     var newParag = $("<p>");
