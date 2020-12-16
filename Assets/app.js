@@ -1,5 +1,6 @@
 var ingredients = "";
 var spoonLength;
+var quote = "";
 
 // ------------------------------------------
 /*
@@ -11,6 +12,12 @@ var spoonLength;
               make sure they're not empty.
 */
 // -----------------------------------------------
+
+$(document).ready(
+  zenQuote()
+)
+
+
 
 $("#recipeFind").on("click", function (event) {
   event.preventDefault();
@@ -330,3 +337,31 @@ function getRecipe_Ingredients(passedArray) {
 
   return ingredientContainer;
 }
+
+function zenQuote(){
+var endpoint = "https://type.fit/api/quotes";
+ $.ajax({
+    url: endpoint,
+    method: "GET",
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+      console.log(
+        "Sorry, but this search generated an error.  Please try again! " +
+          "\n Details: Status =" +
+          XMLHttpRequest.status +
+          ", Status Text: " +
+          XMLHttpRequest.statusText
+      );
+      
+    },
+  }).then(function (response) {
+    var responseArray = JSON.parse(response);
+    //JSON.stringify.response;
+   // console.log("quote response " + response);
+    //quote = response[0].text;
+    console.log(responseArray.length);
+    console.log(responseArray[0].text);
+ 
+  });
+}
+    
+
