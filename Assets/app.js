@@ -299,7 +299,7 @@ function getRecipe_Steps(passedArray) {
 
   $(".modal-content").append(newHfourIngredients);
 
-  for (var i = 0; i < newListIngredient.length; i++) {
+  for (var i = 0; i < recipe_ingredients.length; i++) {
     var newP = $("<p>");
     newP.html(`ingredient ${i + 1}: ${recipe_ingredients[i]}`);
     $(".modal-content").append(newP);
