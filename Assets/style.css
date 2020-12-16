@@ -2,7 +2,8 @@ body {
   font-family: "Julius Sans One", sans-serif;
   background: url("../Images/food4.jpg");
   background-size: cover;
-  background-attachment: local, scroll;
+  background-attachment: fixed;
+ 
 }
 
 .nav-wrapper {
