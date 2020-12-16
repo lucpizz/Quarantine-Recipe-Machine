@@ -429,6 +429,7 @@ var endpoint = "https://type.fit/api/quotes";
     var indexNo = Math.floor((Math.random() * 100) + 1);
     quote = responseArray[indexNo].text;
     console.log("Quote: ", quote);
+    $("#quote").append(quote);
  
   });
 }
