@@ -1,6 +1,6 @@
-# A work in progress...
+## A work in progress...
 
-Quarantine-Recipe-Machine
+# Quarantine-Recipe-Machine Application
 
 # Team
 
@@ -21,12 +21,12 @@ Person comes home and doesn't know what to cook, they can use this App to input 
 
 1. HTML webpages
 
-   - Index.html - Quarantine-Recipe-Machined main webpage
+   - Index.html - Quarantine-Recipe-Machine main webpage
 
 2. Asset directory
 
    - CSS file - attributes to the design of the webpage
-   - JavaScript file - adds the functionality to the Weather Dashboard Program
+   - JavaScript file - adds the functionality to the Quarantine-Recipe-Machine Program
 
 3. Images directory
    - Screenshot of webpage, Quarantine-Recipe-Machine
