@@ -31,7 +31,12 @@ Person comes home and doesn't know what to cook, they can use this App to input 
    - JavaScript file - adds the functionality to the Quarantine-Recipe-Machine Program
 
 3. Images directory
+
    - Screenshot of webpage, Quarantine-Recipe-Machine
+
+4. Archive directory
+
+   - Backup files for previous code versions
 
 ---
 
