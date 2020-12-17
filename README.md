@@ -4,6 +4,8 @@
 
 # Quarantine-Recipe-Machine Application
 
+---
+
 # Team
 
 - Penny, Anthony, Bruce, Andrienne, and Luca
