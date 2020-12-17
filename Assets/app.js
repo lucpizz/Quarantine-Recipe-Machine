@@ -2,6 +2,12 @@ var ingredients = "";
 var spoonLength;
 var quote = "";
 
+
+
+$(document).ready(
+  zenQuote()
+)
+
 // ------------------------------------------
 /*
      Button onClick action.
@@ -13,9 +19,6 @@ var quote = "";
 */
 // -----------------------------------------------
 
-$(document).ready(
-  zenQuote()
-)
 
 
 
@@ -236,6 +239,17 @@ PURPOSE:
 */
 function getRecipe_Steps(passedArray) {
   var myArray = passedArray.analyzedInstructions[0].steps;
+ // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+  
+ if(passedArray.winePairing.productMatches != undefined &&  passedArray.winePairing.productMatches != null && passedArray.winePairing.productMatches[0] != undefined){
+  var wineDetails =   passedArray.winePairing.productMatches[0].title;
+                     }
+                    else{
+                    var wineDetails =  "N/A";
+                    };
+
+
+
   console.log(`Listed Steps: ${myArray}`);
 
   var ingArray = passedArray.extendedIngredients;
@@ -366,6 +380,21 @@ function getRecipe_Steps(passedArray) {
     newParag.html(`step ${i + 1}: ${recipe_steps[i]}`);
     $(".modal-content").append(newParag);
   }
+
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+if(wineDetails != "N/A"){
+  $(".modal-content").append(`<button class="wineDetails btn-primary">${wineDetails}</button>`);
+   // &&&&&&&&&&&&&&&&&&&&&&&&&&
+$(".wineDetails").on("click", function (event) {
+  event.preventDefault();
+  var capturedObject = event.target;
+  var wineText = $(capturedObject).text();
+  var subText = wineText.replace(" ", "+")
+  window.open(`https://www.wine-searcher.com/find/${subText}/1/usa-ct-#t2`);
+
+});
+}
+
 }
 
 /*
